@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_03_081814) do
+ActiveRecord::Schema.define(version: 2021_04_03_090849) do
+
+  create_table "membership_inquiries", force: :cascade do |t|
+    t.string "session_id"
+    t.integer "question_id"
+    t.text "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "questions", force: :cascade do |t|
     t.text "question"
