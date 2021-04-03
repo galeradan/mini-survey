@@ -3,7 +3,11 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   
-  <% @questions.each do |q| %>
+  <div class="form-inputs">
+    
+    <%= f.input :session_id, input_html: {value: session[:session_id]}, as: :hidden %>
+    <% @questions.each do |q| %>
+        <%= f.input :question_id, input_html: {value:q.id }, as: :hidden %>
         <%= 
             case q.field_type
             when 'check_box'
@@ -13,10 +17,11 @@
             when 'select'
               f.send('input', :answer, as: :check_boxes, collection: ['1','2'] )     
             else
-               f.send('input', :answer, label: q.question, :as => :tel )
+               f.send('input', :answer, label: q.question, :as => :string )
             end
         %>
     <% end %>
+  </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
