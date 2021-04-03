@@ -2,7 +2,21 @@
 <%= simple_form_for(@membership_inquiries, url: memberships_path) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+  
+  <% @questions.each do |q| %>
+        <%= 
+            case q.field_type
+            when 'check_box'
+              f.send('input', :answer, label: q.question, as: :check_boxes, collection: ['1','2'] )
+            when 'radio_button'
+              f.send('input', :answer, label: q.question, as: :radio_buttons, collection: ['1','2'] )
+            when 'select'
+              f.send('input', :answer, as: :check_boxes, collection: ['1','2'] )     
+            else
+               f.send('input', :answer, label: q.question, :as => :tel )
+            end
+        %>
+    <% end %>
 
   <div class="form-actions">
     <%= f.button :submit %>

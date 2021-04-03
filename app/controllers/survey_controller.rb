@@ -1,3 +1,4 @@
+require 'pry'
 class SurveyController < ApplicationController
   def index
     @membership_inquiries = MembershipInquiry.new
@@ -5,6 +6,6 @@ class SurveyController < ApplicationController
   end
 
   def create
-    redirect_to questions_path
+    # redirect_to questions_path
   end
 end
