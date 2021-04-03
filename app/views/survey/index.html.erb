@@ -1,2 +1,10 @@
 <h1>Membership Signup Form</h1>
+<%= simple_form_for(@membership_inquiries, url: memberships_path) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
