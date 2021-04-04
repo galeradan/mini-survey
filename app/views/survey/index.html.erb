@@ -5,19 +5,15 @@
   
   <div class="form-inputs">
     
-    <%= f.input :session_id, input_html: {value: session[:session_id]}, as: :hidden %>
     <% @questions.each do |q| %>
-        <%= f.input :question_id, input_html: {value:q.id }, as: :hidden %>
+        <%= f.input :session_id,  input_html: {name: "questions[]session_id", value: session[:session_id], multiple: true}, as: :hidden %>
+        <%= f.input :question_id, input_html: {name: "questions[]question_id", value:q.id, multiple: true }, as: :hidden %>
         <%= 
             case q.field_type
-            when 'check_box'
-              f.send('input', :answer, label: q.question, as: :check_boxes, collection: ['1','2'] )
             when 'radio_button'
-              f.send('input', :answer, label: q.question, as: :radio_buttons, collection: ['1','2'] )
-            when 'select'
-              f.send('input', :answer, as: :check_boxes, collection: ['1','2'] )     
+              f.send('input', :answer, input_html: {name: "questions[]answer", multiple: true }, label: q.question, as: :radio_buttons, collection: ['1','2'] )   
             else
-               f.send('input', :answer, label: q.question, :as => :string )
+               f.send('input', :answer, input_html: {name: "questions[]answer",multiple: true }, label: q.question, :as => :string )
             end
         %>
     <% end %>
