@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   match '/memberships' => 'survey#index',:via => [:get]
   match '/memberships' => 'survey#create',:via => [:post]
   resources :questions
