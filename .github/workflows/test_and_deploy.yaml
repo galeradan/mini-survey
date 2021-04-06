@@ -12,7 +12,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.2
+        # ruby-version: 2.7.2 not needed due to .ruby-version file
         bundler-cache: true
     - name: Install dependencies
       run: |
