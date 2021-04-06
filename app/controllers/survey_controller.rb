@@ -10,6 +10,7 @@ class SurveyController < ApplicationController
     @inquiry = MembershipInquiry.create(inquiry_params[:questions])
     
     # Should handle failed save
+    reset_session
     respond_to do |format|
         format.html { redirect_to memberships_path, notice: "Inquiry was successfully created." }
     end
